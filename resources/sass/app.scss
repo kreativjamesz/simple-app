@@ -6,3 +6,32 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.counters {
+  margin-right: 30px;
+  font-size: 18px;
+  text-align: center;
+  strong {
+    display: block;
+    font-size: 2rem;
+  }
+  .ratings, .answers {
+    width: 60px;
+    height: 60px;
+    border: 1px solid red;
+  }
+  .status {
+    padding: 10px;
+     &.unanswered {
+       border: none;
+     }
+     &.answered {
+       border: 1px solid $green;
+       color: $green;
+     }
+     &.answer-accepted {
+       background: $green;
+       color: $white;
+     }
+  }
+}

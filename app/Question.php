@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Question extends Model
 {
-    protected $fillable = ['title','body'];
+    protected $fillable = ['title','body','slug'];
     
     // We may now be able to get the User created the question.
     public function user() 
@@ -31,9 +31,16 @@ class Question extends Model
         return $this->created_at->diffForHumans();
     }
 
-    public function getNameAttribute()
+    public function getStatusAttribute()
     {
+        if($this->answers > 0) {
+            if($this->best_answer_id) {
+                return "answer-accepted";
+            }
+            return "answered";
+        }
 
+        return "unanswered";
     }
 
 
