@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any?}', function () {
-    return view('welcome');
-});
+// Use for Vue.JS
+// Route::get('/{any?}', function () {
+//     return view('welcome');
+// });
 
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function(){
+    return view('index');
+});
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/questions', 'QuestionController');
