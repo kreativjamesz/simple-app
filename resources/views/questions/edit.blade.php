@@ -11,8 +11,8 @@
             Compose a question
           </div>
           <div class="card-body">
-            <form action="{{route('questions.update', $question->id)}}" method="POST">
-              {{method_field('PUT')}}
+            <form action="{{route('questions.update', $question->id)}}" method="POST" class="form-inline">
+              @method('PUT')
               @csrf
               @include('questions._form',['btnSubmitText' => 'Update Question'])
             </form>
