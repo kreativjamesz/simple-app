@@ -10,7 +10,12 @@
           <div class="d-flex align-items-center">
             <h2>All Questions</h2>
             <div class="ml-auto">
-              <a href="{{ route('questions.create') }}" class="btn btn-primary">+ New Question</a>
+              @guest
+                <a href="{{ route('login') }}" class="btn btn-primary">New Question <i data-feather="help-circle" style="width:18px;"></i></a>
+              @endguest
+              @auth
+                <a href="{{ route('questions.create') }}" class="btn btn-primary"><i data-feather="plus-circle" style="width:18px;"></i> New Question</a>
+              @endauth
             </div>
           </div>
         </div>
@@ -41,16 +46,20 @@
                     
                     <div class="ml-auto d-flex">
                       @auth
-                        @if(Auth::user()->can('update-question',$question))
-                          <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
-                        @endif
-                        @if(Auth::user()->can('delete-question',$question))
-                          <form action="{{ route('questions.destroy',$question->id) }}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i></button>
-                          </form>
-                        @endif
+                        @can('update',$question)
+                          @if(Auth::user()->can('update-question',$question))
+                            <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
+                          @endif
+                        @endcan
+                        @can('delete',$question)
+                          @if(Auth::user()->can('delete-question',$question))
+                            <form action="{{ route('questions.destroy',$question->id) }}" method="post">
+                              @method('DELETE')
+                              @csrf
+                              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i></button>
+                            </form>
+                          @endif
+                        @endcan
                       @endauth
                     </div>
                 </div>
