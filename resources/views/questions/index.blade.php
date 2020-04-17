@@ -38,13 +38,20 @@
               <div class="media-body">
                 <div class="d-flex align-items-center">
                     <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                    
                     <div class="ml-auto d-flex">
-                      <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
-                      <form action="{{ route('questions.destroy',$question->id) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i></button>
-                      </form>
+                      @auth
+                        @if(Auth::user()->can('update-question',$question))
+                          <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
+                        @endif
+                        @if(Auth::user()->can('delete-question',$question))
+                          <form action="{{ route('questions.destroy',$question->id) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i></button>
+                          </form>
+                        @endif
+                      @endauth
                     </div>
                 </div>
                 <p class="lead">
