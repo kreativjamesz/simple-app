@@ -55,7 +55,17 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        // dd($question);
+        // Anytime a user click show, a question should
+        // increments it's views with
+        // $question->views = $question->views + 1;
+        // $question->save();
+
+        // Now simplifies with
+        $question->increment('views');
+        return view('questions.show',compact('question'));
+
+        // dd($question->title);
     }
 
     /**
