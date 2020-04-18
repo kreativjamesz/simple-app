@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
       @include('layouts._sidebar')
       <div class="col-md-9">
+        {{-- QUESTION --}}
         <div class="row">
           <div class="col-md-12">
             <h1>This is a Question</h1>
@@ -13,8 +14,28 @@
                 {{$question->title}}
               </div>
               <div class="card-body">
-                {!!$question->body_html!!}
-                
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="d-flex flex-column justify-content-center align-items-center vote-controls">
+                      <a href="#" title="This title is useful" class="vote-up">
+                        <i class="fas fa-caret-up fa-4x fa-fw text-muted"></i>
+                      </a>
+                      <span class="votes-count fa-lg text-muted">1234</span>
+                      <a href="#" title="">
+                        <i class="fas fa-caret-down fa-4x fa-fw text-muted"></i>
+                      </a>
+                      <a href="#" title="Click to mark as favorite question (Click again to undo" class="favorite text-warning">
+                        <i class="fas fa-star fa-2x fa-fw"></i>
+                        <p class="favorites-count">1234</p>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="media-body">
+                      {!!$question->body_html!!}
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="card-footer text-muted">
                 <div class="author float-right">
@@ -32,6 +53,7 @@
             </div>
           </div>
         </div>
+        {{-- ANSWER --}}
         <div class="row no-gutters mt-4">
           <div class="col-sm-12 my-2">
             <div class="card">
@@ -44,12 +66,18 @@
                 <div class="card-body mt-4">
                   <div class="row">
                     <div class="col-md-2">
-                      <div class="bg-light text-success p-2" style="border-radius: 4px;">
-                        <div class="d-flex align-items-center text-success" style="flex-direction: column">
-                          <a href="#" class="text-success" onclick="return alert('Increase vote');"><i data-feather="chevrons-up" style="width:24px;"></i></a>
-                          <span class="text-success" style="font-size:2em;">5</span>
-                          <a href="#" class="text-success" onclick="return alert('Decrease vote');"><i data-feather="chevrons-down" style="width:24px;"></i></a>
-                        </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center vote-controls">
+                        <a href="#" title="This title is useful" class="vote-up">
+                          <i class="fas fa-caret-up fa-4x fa-fw text-muted"></i>
+                        </a>
+                        <span class="votes-count fa-lg text-muted">1234</span>
+                        <a href="#" title="">
+                          <i class="fas fa-caret-down fa-4x fa-fw text-muted"></i>
+                        </a>
+                        <a href="#" title="Click to mark as favorite question (Click again to undo" class="vote-accepted text-success">
+                          <i class="fas fa-check fa-2x fa-fw"></i>
+                          <p class="favorites-count">1234</p>
+                        </a>
                       </div>
                     </div>
                     <div class="col-md-10">
