@@ -16941,3 +16941,7 @@ readers do not read off random characters that represent icons */
   color: #ffffff;
 }
 
+.ck-editor__editable_inline {
+  min-height: 300px !important;
+}
+
