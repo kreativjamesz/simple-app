@@ -6,9 +6,14 @@ use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AnswersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -70,9 +75,13 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update',$answer);
+        if(Gate::allows('update-answer', $answer)) {
+            return view('answers.edit', compact('question','answer'));
+        }
+        abort(403,"You do not have access to edit this answer");
     }
 
     /**
@@ -82,9 +91,13 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+        $answer->update($request->validate([
+            'body' => 'required',
+        ]));
+        return redirect()->route('questions.show',$question->id)->with('success','Your answer has been submitted!');
     }
 
     /**

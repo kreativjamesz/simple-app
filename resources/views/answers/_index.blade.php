@@ -30,8 +30,28 @@
             </div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="author float-right">
+        <div class="card-footer d-flex">
+          <div class="d-flex justify-content-center mr-auto">
+            @auth
+              @can('update',$answer)
+                @if(Auth::user()->can('update-answer',$answer))
+                  <div>
+                    <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
+                  </div>
+                @endif
+              @endcan
+              @can('delete',$answer)
+                @if(Auth::user()->can('delete-answer',$answer))
+                  <form action="{{ route('questions.answers.destroy',[$question->id, $answer->id]) }}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i> Delete</button>
+                  </form>
+                @endif
+              @endcan
+            @endauth
+          </div>
+          <div class="author">
             <span class="text-muted">Answered {{ $answer->created_date }}</span>
             <div class="media">
               <a class="d-flex align-self-bottom" href="{{$answer->user->url}}">

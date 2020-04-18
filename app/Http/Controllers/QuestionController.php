@@ -86,7 +86,7 @@ class QuestionController extends Controller
         if(Gate::allows('update-question', $question)) {
             return view('questions.edit',compact('question'));
         }
-        abort(403,"You do not have access to given action");
+        abort(403,"You do not have access to edit this question");
     }
 
     /**
