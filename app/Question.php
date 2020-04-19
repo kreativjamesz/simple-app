@@ -60,4 +60,10 @@ class Question extends Model
         // foreach ($question->answers as $answer)
     }
 
+    public function acceptBestAnswer(Answer $answer)
+    {   
+        $this->best_answer_id = $answer->id;
+        $this->save();
+    }
+
 }
