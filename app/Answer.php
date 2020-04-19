@@ -35,15 +35,13 @@ class Answer extends Model
 
         static::deleted(function($answer){
             // Prevent deleting the best answer
-            $question = $answer->question;
-            $question->decrement('answers_count');
-            if($question->best_answer_id === $answer->id) {
-                $question->best_answer_id = NULL;
-                $question->save();
-            }
-
+            // $question = $answer->question;
+            $answer->question->decrement('answers_count');
+            // if($question->best_answer_id === $answer->id) {
+            //     $question->best_answer_id = NULL;
+            //     $question->save();
+            // }
             // $answer->question->decrement('answers_count');
-            
         });
         
         // static::created(function($answer){
