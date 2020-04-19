@@ -19,7 +19,7 @@
                 <a href="#" title="">
                   <i class="fas fa-caret-down fa-4x fa-fw text-muted"></i>
                 </a>
-                <a href="#" title="Click to mark as favorite question (Click again to undo" class="vote-accepted text-success">
+                <a href="#" title="Click to mark as favorite question (Click again to undo" class="{{ $answer->status }}">
                   <i class="fas fa-check fa-2x fa-fw"></i>
                   <p class="favorites-count">1234</p>
                 </a>
