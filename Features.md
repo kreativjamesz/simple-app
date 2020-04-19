@@ -65,3 +65,80 @@ $u2->load('favorites)->favorites
 $q1->favorites()->where('user_id',$user->id)->count() > 0;
 => false
 
+VOTING THE QUESTION
+* A question can be voted by more than one user
+* An answer can be voted by more than one user
+* A user can votes more than one question (can only vote a unique question)
+* A user can vote more than one answer (can only vote a unique answer)
+Relationship Options
+* Many to Many relationship
+* Many to Many Polymorphic Relationship
+
+DATA COLLECTIONS
+
+questions             users                 answers
++-----------------+   +-----------------+   +------------------+
+| id | title      |   | id | name       |   | id | question_id |
+| 1  | Question 1 |   | 1  | Andy       |   | 1  | 1           |
+| 2  | Question 2 |   | 2  | Bob        |   | 2  | 2           |
++-----------------+   +-----------------+   +------------------+
+
+MANY TO MANY RELATIONSHIP
+
+votes_questions                     votes_answers
++-------------------------------+   +-------------------------------+
+| user_id | question_id | like  |   | user_id | answer_id   | like  |
+| 1       | 1           |  1    |   | 1       | 1           | -1    |
+| 2       | 1           | -1    |   | 1       | 2           |  1    |
+| 2       | 2           |  1    |   | 2       | 2           |  1    |
++-------------------------------+   +-------------------------------+
+
+
+MANY TO MANY POLYMORPHIC RELATIONSHIP
+votable_data
++----------------------------------------------+
+| user_id | votable_id  | votable_type  | like |
+| 1       | 1           | App\Question  |  1   |
+| 2       | 1           | App\Answer    | -1   |
+| 2       | 2           | App\Question  |  1   |
+| 2       | 2           | App\Answer    |  1   |
++----------------------------------------------+
+
+TINKER POLYMORPHIC
+// Find users
+$u1 = App\User::find(1);
+$u2 = App\User::find(2);
+
+// Find questions
+$q1 = App\Question::find(1);
+$q2 = App\Question::find(2);
+
+// Find first answers of questions
+$a1 = $q1->answers->first();
+$a2 = $q2->answers->first();
+
+// Attaching Vote on Questions and Answers
+$u1->voteQuestions()->attach($q1,['vote'=> 1]); // User #1 Votes Up for Question #1
+$u2->voteQuestions()->attach($q1,['vote'=> -1]); // User #2 Votes Down for Question #1
+$u1->voteAnswer()->attach($a1,['vote'=> 1]); // User #1 Votes Up for Answer #1
+$u2->voteAnswer()->attach($a1,['vote'=> -1]); // User #2 Votes Down for Answer #1
+$u1->voteAnswer()->updateExistingPivot($a1,['vote'=>-1]); // Binawi yung vote, votes down a voted up answer.
+$u2->voteAnswer()->updateExistingPivot($a2,['vote'=>-1]); // Binawi yung vote, votes down a voted up answer.
+
+
+// Check the votes
+$q1->votes
+$q1->votes
+
+// To see Pivots
+$q1->votes()->withPivot('votes')->get();
+
+// How to know, how many users votes to a question
+$q1->votes()->wherePivot('pivot',-1)->count();
+=> 1
+// Summing the votes
+$q1->votes()->wherePivot('pivot',-1)->sum('vote');
+=> "-1"
+// How to see how many users vote to a question
+$q1->votes()->wherePivot('pivot',1)->sum('vote');
+=> "1"
