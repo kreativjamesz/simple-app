@@ -66,4 +66,9 @@ class User extends Authenticatable
         return $this->created_at->diffForHumans();
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(Question::class, 'favorites')->withTimestamps(); //,'user_id','question_id');
+    }
+
 }

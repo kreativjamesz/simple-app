@@ -22,7 +22,7 @@
                 @can('accept', $answer)
                   <a href="#" title="Click this answer as best answer" 
                     class="{{ $answer->status }}"
-                    onclick="event.preventDefault(); if(confirm('Are you sure?')) {document.getElementById('accept-answer-{{$answer->id}}').submit();} "
+                    onclick="event.preventDefault(); if(confirm('Are you sure?')) {document.getElementById('accept-answer-{{$answer->id}}').submit();}"
                     >
                     <i class="fas fa-check fa-2x fa-fw"></i>
                   </a>

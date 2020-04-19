@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,8 @@ Route::resource("/questions", 'QuestionController');
 Route::resource("/questions.answers",'AnswersController')->except(['index','create','show']);
 // Route::post('/questions/{question}/answers','AnswersController@store')->name('answers.store');
 Route::post('/answers/{answer}/accept','AcceptAnswerController')->name('answers.accept');
+
+// Initiate Favorite
+Route::post('/questions/{question}/favorites','FavoritesController@store')->name('questions.favorite');
+// Initiate UnFavorite
+Route::delete('/questions/{question}/favorites','FavoritesController@destroy')->name('questions.unfavorite');

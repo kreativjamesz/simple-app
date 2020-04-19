@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^18.0.0",
+        "tailwindcss": "^1.2.0",
         "vue-router": "^3.1.6"
     }
 }
