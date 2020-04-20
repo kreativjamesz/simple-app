@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 
 class Question extends Model
 {
+    use VotableTrait;
+    
     protected $fillable = ['title','body'];
     
     // public function getRouteKeyName() {
@@ -87,19 +89,20 @@ class Question extends Model
     }
 
     // Define relationship method
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
+    // Replaced by VotableTraits
+    // public function votes()
+    // {
+    //     return $this->morphToMany(User::class, 'votable');
+    // }
 
-    public function upVotes()
-    {
-        return $this->votes()->wherePivot('votes', 1);
-    }
+    // public function upVotes()
+    // {
+    //     return $this->votes()->wherePivot('votes', 1);
+    // }
 
-    public function downVotes()
-    {
-        return $this->votes()->wherePivot('votes',-1);
-    }
+    // public function downVotes()
+    // {
+    //     return $this->votes()->wherePivot('votes',-1);
+    // }
 
 }
