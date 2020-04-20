@@ -12,13 +12,27 @@
           <div class="row">
             <div class="col-md-2">
               <div class="d-flex flex-column justify-content-center align-items-center vote-controls">
-                <a href="#" title="This title is useful" class="vote-up">
-                  <i class="fas fa-caret-up fa-4x fa-fw text-muted"></i>
+                <a href="#" 
+                   title="This answer is useful" 
+                   class="vote-up {{Auth::guest() ? 'text-muted':''}}"
+                   onclick="event.preventDefault(); document.getElementById('up-vote-answer-{{$answer->id}}').submit();">
+                  <i class="fas fa-caret-up fa-4x fa-fw"></i>
                 </a>
-                <span class="votes-count fa-lg text-muted">1234</span>
-                <a href="#" title="">
-                  <i class="fas fa-caret-down fa-4x fa-fw text-muted"></i>
+                <form id="up-vote-answer-{{ $answer->id }}" action="/answers/{{ $answer->id }}/vote" method="post">
+                  @csrf
+                  <input type="hidden" name="vote" value="1"/>
+                </form>
+                <span class="votes-count fa-lg text-muted">{{$answer->votes_count}}</span>
+                <a href="#" 
+                   title="This answer is useless"
+                   class="vote-down {{Auth::guest() ? 'text-muted':''}}"
+                   onclick="event.preventDefault(); document.getElementById('down-vote-answer-{{$answer->id}}').submit();">
+                  <i class="fas fa-caret-down fa-4x fa-fw"></i>
                 </a>
+                <form id="down-vote-answer-{{ $answer->id }}" action="/answers/{{ $answer->id }}/vote" method="post">
+                  @csrf
+                  <input type="hidden" name="vote" value="-1"/>
+                </form>
                 @can('accept', $answer)
                   <a href="#" title="Click this answer as best answer" 
                     class="{{ $answer->status }}"
