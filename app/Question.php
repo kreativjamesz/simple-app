@@ -28,7 +28,7 @@ class Question extends Model
 
     public function getUrlAttribute()
     {
-        return route('questions.show', $this->id);
+        return route('questions.show', $this->slug); //slug
     }
 
     public function getCreatedDateAttribute()
@@ -89,7 +89,7 @@ class Question extends Model
     }
 
     // Define relationship method
-    // Replaced by VotableTraits
+    // Replaced with VotableTraits
     // public function votes()
     // {
     //     return $this->morphToMany(User::class, 'votable');

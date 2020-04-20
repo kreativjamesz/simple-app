@@ -80,17 +80,10 @@
               @endcan
             @endauth
           </div>
-          <div class="author">
-            <span class="text-muted">Answered {{ $answer->created_date }}</span>
-            <div class="media">
-              <a class="d-flex align-self-bottom" href="{{$answer->user->url}}">
-                  <img src="{{$answer->user->avatar}}" alt="User Avatar">
-              </a>
-              <div class="media-body">
-                <a style="font-size:1.4em;" href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
-              </div>
-            </div>
-          </div>
+          @include('components._author',[
+            'label'=> 'Answer by:',
+            'model'=> $answer,
+          ])
         </div>
       </div>
     @endforeach

@@ -63,17 +63,11 @@
                 </div>
               </div>
               <div class="card-footer text-muted">
-                <div class="author float-right">
-                  <span class="text-muted">Answered {{ $question->created_date }}</span>
-                  <div class="media">
-                    <a class="d-flex align-self-bottom" href="{{$question->user->url}}">
-                        <img src="{{$question->user->avatar}}" alt="User Avatar">
-                    </a>
-                    <div class="media-body">
-                      <a style="font-size:1.4em;" href="{{ $question->user->url }}">{{ $question->user->name }}</a>
-                    </div>
-                  </div>
-                </div>
+                @include('components._author',[
+                  'label'=> 'Asked by:',
+                  'model'=> $question,
+                ])
+
               </div>
             </div>
           </div>

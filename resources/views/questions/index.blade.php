@@ -6,6 +6,7 @@
     <div class="col-md-12">
       @include('layouts._messages')
       <div class="card">
+
         <div class="card-header">
           <div class="d-flex align-items-center">
             <h2>All Questions</h2>
@@ -26,7 +27,6 @@
               {{ session('status') }}
             </div>
           @endif
-
           @foreach ($questions as $question)
             <div class="media">
               <div class="d-flex flex-column counters">
@@ -76,6 +76,7 @@
 
           {{$questions->links()}}
         </div>
+        
       </div>
     </div>
   </div>

@@ -73,7 +73,7 @@ class Answer extends Model
     }
 
     // Define polymorphic relationship
-    // Replaced by VotableTraits
+    // Replaced with VotableTraits
     // public function votes()
     // {
     //     return $this->morphToMany(User::class, 'votable');
