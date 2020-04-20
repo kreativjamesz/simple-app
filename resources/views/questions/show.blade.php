@@ -16,44 +16,10 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center vote-controls">
-                      <a href="#" 
-                         title="This title is useful" 
-                         class="vote-up {{ Auth::guest() ? 'text-muted':''}}"
-                         onclick="event.preventDefault(); document.getElementById('up-vote-question-{{$question->id}}').submit();">
-                        <i class="fas fa-caret-up fa-4x fa-fw"></i>
-                      </a>
-                      <form id="up-vote-question-{{ $question->id }}" action="/questions/{{ $question->id }}/vote" method="post">
-                        @csrf
-                        <input type="hidden" name="vote" value="1"/>
-                      </form>
-                      <span class="votes-count fa-lg text-muted">{{$question->votes_count}}</span>
-                      <a href="#" 
-                         title=""
-                         class="vote-down {{ Auth::guest() ? 'text-muted':''}}"
-                         onclick="event.preventDefault(); document.getElementById('down-vote-question-{{$question->id}}').submit();">
-                        <i class="fas fa-caret-down fa-4x fa-fw"></i>
-                      </a>
-                      <form id="down-vote-question-{{ $question->id }}" action="/questions/{{ $question->id }}/vote" method="post">
-                        @csrf
-                        <input type="hidden" name="vote" value="-1"/>
-                      </form>
-                      <a 
-                        href="#" 
-                        title="Click to mark as favorite question (Click again to undo" 
-                        class="favorite {{ Auth::guest() ? 'text-info' : ($question->is_favorited ? 'text-warning' : 'text-muted') }}"
-                        onclick="event.preventDefault(); document.getElementById('favorite-question-{{$question->id}}').submit();"
-                        >
-                        <i class="fas fa-star fa-2x fa-fw"></i>
-                        <p class="favorites-count text-center">{{$question->favorites_count}}</p>
-                      </a>
-                      <form id="favorite-question-{{ $question->id }}" action="/questions/{{ $question->id }}/favorites" method="post">
-                        @csrf
-                        @if($question->is_favorited)
-                          @method('DELETE')
-                        @endif
-                      </form>
-                    </div>
+                    @include('components._vote',[
+                      'model' => $question
+                    ])
+                    
                   </div>
                   <div class="col-md-10">
                     <div class="media-body">
