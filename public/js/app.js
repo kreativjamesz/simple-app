@@ -52820,14 +52820,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["default"])
-});
-_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default.a.create(document.querySelector('#editor'), {}).then(function (editor) {
-  console.log('Editor was initialized', editor);
-  var toolbarContainer = document.querySelector('#toolbar-container');
-  toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-})["catch"](function (error) {
-  console.error(error.stack);
-});
+}); // For WYSIWYG
+// ClassicEditor.create( document.querySelector( '#editor' ), {
+// })
+// .then( editor => {
+//     console.log( 'Editor was initialized', editor );
+//     const toolbarContainer = document.querySelector( '#toolbar-container' );
+//     toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+// })
+// .catch( error => {
+//     console.error( error.stack );
+// });
 
 /***/ }),
 

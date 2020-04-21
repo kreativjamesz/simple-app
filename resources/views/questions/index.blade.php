@@ -48,7 +48,7 @@
                       @auth
                         @can('update',$question)
                           @if(Auth::user()->can('update-question',$question))
-                            <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
+                            <a href="{{route('questions.edit', $question->id)}}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i></a>
                           @endif
                         @endcan
                         @can('delete',$question)
@@ -68,7 +68,7 @@
                   <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
                   <small class="text-muted">{{ $question->created_date }}</small>
                 </p>
-                {{ Str::limit($question->body,250) }}
+                <div class="excerpt">{{$question->excerpt(350)}}</div>
               </div>
             </div>
             <hr>

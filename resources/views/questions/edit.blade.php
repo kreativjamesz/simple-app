@@ -12,7 +12,7 @@
           </div>
           <div class="card-body">
             <form action="{{route('questions.update', $question->id)}}" method="POST">
-              @method('PUT')
+              @method('PATCH')
               @csrf
               @include('questions._form',['btnSubmitText' => 'Update Question'])
             </form>

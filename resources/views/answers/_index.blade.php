@@ -26,7 +26,7 @@
               @can('update',$answer)
                 @if(Auth::user()->can('update-answer',$answer))
                   <div>
-                    <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i> Edit</a>
+                    <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}" class="btn btn-sm btn-warning"><i data-feather="edit" style="width:18px;"></i></a>
                   </div>
                 @endif
               @endcan
@@ -35,15 +35,15 @@
                   <form action="{{ route('questions.answers.destroy',[$question->id, $answer->id]) }}" method="post">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i> Delete</button>
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i data-feather="trash" style="width:18px;"></i></button>
                   </form>
                 @endif
               @endcan
             @endauth
           </div>
           @include('components._author',[
-            'label'=> 'Answer by:',
             'model'=> $answer,
+            'label'=> 'Answered by:',
           ])
         </div>
       </div>

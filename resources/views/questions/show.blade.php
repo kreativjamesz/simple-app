@@ -19,15 +19,17 @@
                     @include('components._vote',[
                       'model' => $question
                     ])
-                    
                   </div>
                   <div class="col-md-10">
                     <div class="media-body">
-                      {!!$question->body_html!!}
+                      {{$question->excerpt(350)}}
                     </div>
                   </div>
                 </div>
               </div>
+              {{-- <div class="col-4"></div> --}}
+              {{-- <div class="col-4"></div> --}}
+              {{-- <div class="col-4"></div> --}}
               <div class="card-footer text-muted">
                 @include('components._author',[
                   'label'=> 'Asked by:',

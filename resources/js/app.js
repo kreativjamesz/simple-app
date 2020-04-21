@@ -16,14 +16,15 @@ let app = new Vue({
     router: new VueRouter(routes)
 });
 
-ClassicEditor.create( document.querySelector( '#editor' ), {
+// For WYSIWYG
+// ClassicEditor.create( document.querySelector( '#editor' ), {
     
-})
-.then( editor => {
-    console.log( 'Editor was initialized', editor );
-    const toolbarContainer = document.querySelector( '#toolbar-container' );
-    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-})
-.catch( error => {
-    console.error( error.stack );
-});
+// })
+// .then( editor => {
+//     console.log( 'Editor was initialized', editor );
+//     const toolbarContainer = document.querySelector( '#toolbar-container' );
+//     toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+// })
+// .catch( error => {
+//     console.error( error.stack );
+// });

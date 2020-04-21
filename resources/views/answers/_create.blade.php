@@ -6,7 +6,7 @@
       @csrf
       <div class="form-group">
         <div id="toolbar-container"></div>
-        <textarea class="form-control {{$errors->has('body') ? 'is-invalid' : ''}}" name="body" id="editor" rows="10"></textarea>
+        <textarea class="form-control {{$errors->has('body') ? 'is-invalid' : ''}}" name="body" id="body" rows="10"></textarea>
         @if($errors->has('body'))
           <div class="invalid-feedback">
             <strong>{{ $errors->first('body') }}</strong>
