@@ -45,3 +45,17 @@ $fa-font-path: "../webfonts";
 .ck-editor__editable_inline {
   min-height: 300px !important;
 }
+#app {
+  #questions {
+    .media {
+      &.data-questions {
+        margin-top:1em;
+        margin-bottom:1em;
+        padding: 1em 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid rgb(235, 235, 235);
+        }
+      }
+    }
+  }
+}

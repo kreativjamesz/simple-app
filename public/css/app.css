@@ -16945,3 +16945,13 @@ readers do not read off random characters that represent icons */
   min-height: 300px !important;
 }
 
+#app #questions .media.data-questions {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em 0;
+}
+
+#app #questions .media.data-questions:not(:last-child) {
+  border-bottom: 1px solid #ebebeb;
+}
+

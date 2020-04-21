@@ -11,10 +11,8 @@ class Question extends Model
     
     protected $fillable = ['title','body'];
     
-    // public function getRouteKeyName() {
-    //     return 'slug';
-    // }
-    // We may now be able to get the User created the question.
+    protected $appends = ['created_date'];
+
     public function user() 
     {
         return $this->belongsTo(User::class);
@@ -26,11 +24,6 @@ class Question extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
     
-    // public function setBodyAttribute($value)
-    // {
-    //     $this->attributes['body'] = clean($value);
-    // }
-
     public function getUrlAttribute()
     {
         return route('questions.show', $this->slug); //slug
@@ -60,7 +53,8 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        // Option 2 for Displaying Answers Data with Order By
+        return $this->hasMany(Answer::class)->orderBy('votes_count','DESC');;
         // Ok
         // $question->answers()->count();
         // Not Ok

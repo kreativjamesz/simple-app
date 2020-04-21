@@ -1,19 +1,18 @@
-import Vue from 'vue';
-//window.Vue = require('vue');
-import VueRouter from 'vue-router';
 require('./bootstrap');
-import routes from './routes';
+// import VueRouter from 'vue-router';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+window.Vue = require('vue');
 
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('userinfo', require('./components/UserInfo.vue').default);
 
 let app = new Vue({
     el: '#app',
-    router: new VueRouter(routes)
+    // router: new VueRouter(routes)
 });
 
 // For WYSIWYG

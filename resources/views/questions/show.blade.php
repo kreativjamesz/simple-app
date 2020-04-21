@@ -31,11 +31,11 @@
               {{-- <div class="col-4"></div> --}}
               {{-- <div class="col-4"></div> --}}
               <div class="card-footer text-muted">
-                @include('components._author',[
+                {{-- @include('components._author',[
                   'label'=> 'Asked by:',
                   'model'=> $question,
-                ])
-
+                ]) --}}
+                <userinfo :model="{{$question}}" label="Asked by:"></userinfo>
               </div>
             </div>
           </div>
